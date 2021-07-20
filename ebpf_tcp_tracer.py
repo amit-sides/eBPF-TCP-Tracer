@@ -1,27 +1,6 @@
 #!/usr/bin/python
-#
-# tcpv4tracer   Trace TCP connections.
-#               For Linux, uses BCC, eBPF. Embedded C.
-#
-# USAGE: tcpv4tracer [-h] [-v] [-p PID] [-N NETNS]
-#
-# You should generally try to avoid writing long scripts that measure multiple
-# functions and walk multiple kernel structures, as they will be a burden to
-# maintain as the kernel changes.
-# The following code should be replaced, and simplified, when static TCP probes
-# exist.
-#
-# Copyright 2017-2020 Kinvolk GmbH
-#
-# Licensed under the Apache License, Version 2.0 (the "License")
-from __future__ import print_function
 import time
-import collections
 from bcc import BPF
-
-import argparse as ap
-from socket import inet_ntop, AF_INET, AF_INET6
-from struct import pack
 
 # define BPF program
 bpf_program = """
